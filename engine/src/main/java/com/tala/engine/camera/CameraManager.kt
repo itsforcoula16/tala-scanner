@@ -48,12 +48,10 @@ class CameraManager(private val context: Context) {
         val provider = cameraProvider
             ?: throw IllegalStateException("CameraManager not initialized. Call initialize() first")
 
-        val preview = Preview.Builder().build()
-
-        // Set surface provider on main thread
-        previewView?.let { view ->
-            view.post {
-                view.surfaceProvider = preview.surfaceProvider
+        val preview = Preview.Builder().build().also {
+            val surfaceProvider = previewView?.surfaceProvider
+            if (surfaceProvider != null) {
+                it.setSurfaceProvider(surfaceProvider)
             }
         }
 
