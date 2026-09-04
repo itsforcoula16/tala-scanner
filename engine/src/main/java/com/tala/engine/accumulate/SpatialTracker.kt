@@ -1,6 +1,8 @@
 package com.tala.engine.accumulate
 
 import com.tala.engine.model.BoundingBox
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 class SpatialTracker(
     private val positionTolerancePx: Float = 50f

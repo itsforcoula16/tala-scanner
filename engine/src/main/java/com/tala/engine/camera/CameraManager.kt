@@ -14,6 +14,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class CameraManager(private val context: Context) {
 
@@ -47,8 +48,13 @@ class CameraManager(private val context: Context) {
         val provider = cameraProvider
             ?: throw IllegalStateException("CameraManager not initialized. Call initialize() first")
 
-        val preview = Preview.Builder().build().also {
-            previewView?.surfaceProvider = it.surfaceProvider
+        val preview = Preview.Builder().build()
+
+        // Set surface provider on main thread
+        previewView?.let { view ->
+            view.post {
+                view.surfaceProvider = preview.surfaceProvider
+            }
         }
 
         val analysis = ImageAnalysis.Builder()
@@ -68,10 +74,6 @@ class CameraManager(private val context: Context) {
         provider.bindToLifecycle(lifecycleOwner, cameraSelector, preview, analysis)
 
         return analysis
-    }
-
-    fun setResolution(resolution: Resolution) {
-        currentAnalysis?.targetResolution = Size(resolution.width, resolution.height)
     }
 
     fun shutdown() {

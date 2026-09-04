@@ -3,7 +3,6 @@ package com.tala.engine.decode
 import android.graphics.Bitmap
 import com.google.zxing.*
 import com.google.zxing.common.HybridBinarizer
-import com.google.zxing.datamatrix.decoder.DecodedBitStreamParser
 import com.tala.engine.model.BarcodeFormat
 import com.tala.engine.model.BoundingBox
 import kotlinx.coroutines.Dispatchers

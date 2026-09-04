@@ -152,8 +152,8 @@ class ClassicDetector(
         var right = centerX
         val threshold = edgeThreshold / 2
 
-        while (left > 0 && hasVerticalEdges(edges, left - 1, startY, height, threshold)) left--
-        while (right < width - 1 && hasVerticalEdges(edges, right + 1, startY, height, threshold)) right++
+        while (left > 0 && hasVerticalEdges(edges, left - 1, startY, width, height, threshold)) left--
+        while (right < width - 1 && hasVerticalEdges(edges, right + 1, startY, width, height, threshold)) right++
 
         val w = right - left
         val h = edgeCount
@@ -178,11 +178,11 @@ class ClassicDetector(
         return count > searchRange / 3
     }
 
-    private fun hasVerticalEdges(edges: IntArray, x: Int, startY: Int, height: Int, threshold: Int): Boolean {
+    private fun hasVerticalEdges(edges: IntArray, x: Int, startY: Int, imgWidth: Int, imgHeight: Int, threshold: Int): Boolean {
         var count = 0
         val searchRange = 20
-        for (y in max(0, startY - searchRange) until min(height, startY + searchRange)) {
-            if (edges[y * width + x] > threshold) count++
+        for (y in max(0, startY - searchRange) until min(imgHeight, startY + searchRange)) {
+            if (edges[y * imgWidth + x] > threshold) count++
         }
         return count > searchRange / 3
     }
