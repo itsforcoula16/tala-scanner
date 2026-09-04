@@ -32,7 +32,7 @@ class CameraManager(private val context: Context) {
                     cameraProvider = provider
                     cont.resume(provider)
                 } catch (e: Exception) {
-                    cont.resume(throw e))
+                    cont.resumeWithException(e)
                 }
             }, ContextCompat.getMainExecutor(context))
         }

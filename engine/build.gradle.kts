@@ -13,24 +13,26 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
-        externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++17"
-                arguments += "-DANDROID_STL=c++_shared"
-            }
-        }
-
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
-        }
+        // Native C++ build disabled - using ZXing Java decoder instead
+        // To enable native build, uncomment below:
+        // externalNativeBuild {
+        //     cmake {
+        //         cppFlags += "-std=c++17"
+        //         arguments += "-DANDROID_STL=c++_shared"
+        //     }
+        // }
+        // ndk {
+        //     abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
+        // }
     }
 
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
-        }
-    }
+    // Native C++ build disabled
+    // externalNativeBuild {
+    //     cmake {
+    //         path = file("src/main/cpp/CMakeLists.txt")
+    //         version = "3.22.1"
+    //     }
+    // }
 
     buildTypes {
         release {
