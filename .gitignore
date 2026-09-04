@@ -1,0 +1,31 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Engine build
+/engine/build
+/engine/.cxx
+/engine/src/main/cpp/build
+
+# Engine-core build
+/engine-core/build
+
+# Demo build
+/demo/build
+/demo/app-debug.apk
+
+# Onnx model (large files)
+/onnx-model/build
+
+# Generated files
+*.apk
+*.aab
+*.jks
+*.keystore
