@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":engine"))
+    implementation(project(":engine-core"))
     implementation(project(":onnx-model"))
 
     implementation("androidx.core:core-ktx:1.13.1")
@@ -48,4 +49,13 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
+
+    // CameraX (needed for PreviewView in demo)
+    val cameraxVersion = "1.4.0"
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 }
